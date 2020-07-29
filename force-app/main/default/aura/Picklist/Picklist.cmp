@@ -1,0 +1,104 @@
+<aura:component>
+    <!-- Attributes -->
+    <aura:attribute name="label" type="String" default="" description="Provide the label for the picklist." />
+    <aura:attribute name="placeholder" type="String" default="Select an Option" />
+    <aura:attribute
+        name="options"
+        type="Object[]"
+        default="[]"
+        description="Provide all the available options. Every option should have both label and value."
+    />
+    <aura:attribute name="c_options" type="Object[]" default="[]" description="Used for internal options handling." />
+    <aura:attribute
+        name="selectedValues"
+        type="List"
+        default="[]"
+        description="This stores the list of all the selected option's value."
+    />
+    <aura:attribute
+        name="variant"
+        type="String"
+        default="label-stacked"
+        description="Available variants are 'label-hidden', 'label-inline', and 'label-stacked'. Default variant is 'label-stacked'."
+    />
+    <aura:attribute
+        name="picklistFinalValue"
+        type="String"
+        access="private"
+        description="This attribute is used as the input value."
+    />
+
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.options}" action="{!c.optionsChanged}" />
+
+    <!-- Register Events -->
+    <aura:registerEvent name="onChange" type="c:PicklistChange" />
+
+    <!-- Picklist Core Component -->
+    <div
+        class="{! 'slds-form-element ' + if(v.variant=='label-stacked', 'slds-form-element_stacked', if(v.variant == 'label-inline', 'slds-form-element_horizontal', ''))}"
+    >
+        <aura:if isTrue="{!v.variant != 'label-hidden'}">
+            <label class="slds-form-element__label" for="picklist">{!v.label}</label>
+        </aura:if>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container slds-size_small">
+                <div
+                    class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    role="combobox"
+                    aura:id="picklist"
+                >
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input
+                            type="text"
+                            class="slds-input slds-combobox__input"
+                            id="picklist"
+                            aria-controls="picklist-options"
+                            autocomplete="off"
+                            role="textbox"
+                            placeholder="{!v.placeholder}"
+                            readonly="true"
+                            onclick="{!c.togglePicklist}"
+                            onblur="{!c.handleFocusOut}"
+                            value="{!v.picklistFinalValue}"
+                            title="{!v.picklistFinalValue}"
+                        />
+                        <span
+                            class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right"
+                        >
+                            <lightning:icon iconName="utility:down" size="x-small" />
+                        </span>
+                    </div>
+                    <div
+                        id="picklist-options"
+                        class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+                        role="listbox"
+                    >
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <aura:iteration items="{!v.c_options}" var="option">
+                                <li role="presentation" data-value="{!option.value}" onclick="{!c.handleOptionClick}">
+                                    <div
+                                        class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                        role="option"
+                                    >
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <aura:if isTrue="{!option.selected}">
+                                                <lightning:icon iconName="utility:check" size="x-small" />
+                                            </aura:if>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span class="slds-truncate" title="{!option.label}">{!option.label}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </aura:iteration>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

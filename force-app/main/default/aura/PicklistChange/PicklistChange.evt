@@ -1,0 +1,11 @@
+<aura:event
+    type="COMPONENT"
+    description="Dispatched when the option is changed in the Picklist component."
+>
+    <aura:attribute
+        name="selectedOptions"
+        type="List"
+        description="This stores the list of all the selected option's value."
+        access="global"
+    />
+</aura:event>
