@@ -44,5 +44,9 @@
         ];
 
         component.set('v.options', options);
+    },
+
+    handleOnChange: function (component, event, helper) {
+        console.log(event.getParam('selectedValues'));
     }
 });
