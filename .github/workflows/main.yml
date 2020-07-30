@@ -20,9 +20,6 @@ jobs:
             - name: Decrypt server Key
               run: openssl enc -aes-256-cbc -md sha256 -salt -d -in assets/certificates/server.key.enc -out assets/certificates/server.key -k ${{ secrets.SERVER_KEY_PASSWORD }} -pbkdf2
 
-            - name: Install jq, a json parsing library
-              run: apt update && apt -y install jq
-
             - name: Setup SFDX environment variables
               run: |
                   export SALESFORCE_CLI_URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
