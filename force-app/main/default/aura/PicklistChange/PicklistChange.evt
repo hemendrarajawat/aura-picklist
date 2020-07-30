@@ -3,7 +3,7 @@
     description="Dispatched when the option is changed in the Picklist component."
 >
     <aura:attribute
-        name="selectedOptions"
+        name="selectedValues"
         type="List"
         description="This stores the list of all the selected option's value."
         access="global"

@@ -22,11 +22,24 @@
         description="Available variants are 'label-hidden', 'label-inline', and 'label-stacked'. Default variant is 'label-stacked'."
     />
     <aura:attribute
+        name="multiple"
+        type="Boolean"
+        default="false"
+        description="This will handle the multi-select functionality."
+    />
+    <aura:attribute
+        name="allOption"
+        type="Boolean"
+        default="true"
+        description="If true, 'All' option will provided multi-select picklist."
+    />
+    <aura:attribute
         name="picklistFinalValue"
         type="String"
         access="private"
         description="This attribute is used as the input value."
     />
+    <aura:attribute name="allOptionsSelected" type="Boolean" default="false" access="private" />
 
     <!-- Handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
@@ -55,7 +68,6 @@
                         <input
                             type="text"
                             class="slds-input slds-combobox__input"
-                            id="picklist"
                             aria-controls="picklist-options"
                             autocomplete="off"
                             role="textbox"
@@ -78,6 +90,23 @@
                         role="listbox"
                     >
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <aura:if isTrue="{!and(v.multiple, v.allOption)}">
+                                <li role="presentation" onclick="{!c.handleAllOptionClick}">
+                                    <div
+                                        class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                        role="option"
+                                    >
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <aura:if isTrue="{!v.c_options.length == v.selectedValues.length}">
+                                                <lightning:icon iconName="utility:check" size="x-small" />
+                                            </aura:if>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span class="slds-truncate" title="All">All</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </aura:if>
                             <aura:iteration items="{!v.c_options}" var="option">
                                 <li role="presentation" data-value="{!option.value}" onclick="{!c.handleOptionClick}">
                                     <div

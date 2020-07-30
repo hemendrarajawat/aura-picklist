@@ -17,7 +17,11 @@
 
     handleOptionClick: function (component, event, helper) {
         let clickedValue = event.currentTarget.getAttribute('data-value');
-        helper.resetSelectedOptions(component, event, clickedValue);
+        let selectedValues = component.get('v.selectedValues');
+        let multiple = component.get('v.multiple');
+        if (!multiple) {
+            helper.resetSelectedOptions(component, event, clickedValue);
+        }
 
         let c_options = component.get('v.c_options');
         let selectedOption = c_options.find(
@@ -27,10 +31,43 @@
         if (selectedOption) {
             selectedOption.selected = !selectedOption.selected;
             component.set('v.c_options', c_options);
-            component.set('v.selectedValues', [selectedOption.value]);
+
+            if (!multiple) {
+                selectedValues = [];
+            }
+
+            if (selectedOption.selected) {
+                selectedValues.push(selectedOption.value);
+            } else {
+                selectedValues.splice(
+                    selectedValues.indexOf(selectedOption.value),
+                    1
+                );
+            }
         }
 
-        helper.togglePicklist(component, event);
+        component.set('v.selectedValues', selectedValues);
+        helper.updateAllOptionsSelected(component, event);
+        helper.updateFinalValue(component, event);
+        if (!multiple) {
+            helper.togglePicklist(component, event);
+        }
+        helper.fireOnChangeEvent(component, event);
+    },
+
+    handleAllOptionClick: function (component, event, helper) {
+        let c_options = component.get('v.c_options');
+        let selectedValues = [];
+        c_options.forEach((c_option) => {
+            c_option.selected = !component.get('v.allOptionsSelected');
+            if (c_option.selected) {
+                selectedValues.push(c_option.value);
+            }
+        });
+        component.set('v.c_options', c_options);
+        component.set('v.selectedValues', selectedValues);
+
+        helper.updateAllOptionsSelected(component, event);
         helper.updateFinalValue(component, event);
         helper.fireOnChangeEvent(component, event);
     }

@@ -74,5 +74,15 @@
             }
         });
         component.set('v.c_options', c_options);
+    },
+
+    updateAllOptionsSelected: function (component, event) {
+        if (component.get('v.multiple') && component.get('v.allOption')) {
+            component.set(
+                'v.allOptionsSelected',
+                component.get('v.c_options').length ==
+                    component.get('v.selectedValues').length
+            );
+        }
     }
 });
