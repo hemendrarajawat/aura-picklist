@@ -10,8 +10,6 @@ Single select picklist:
 <img src="https://raw.githubusercontent.com/hemendrarajawat/aura-picklist/master/assets/images/single-select.gif" />
 </kbd>
 
-<br/>
-
 Multi select picklist:
 
 <kbd>
@@ -35,11 +33,11 @@ Deploy to Scratch org: [![Deploy](https://deploy-to-sfdx.com/dist/assets/images/
 ## Sample Code
 Single Select cmp code:
 
-> `<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" onChange="{!c.handleOnChange}" />`
+`<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" onChange="{!c.handleOnChange}" />`
 
 Multi Select cmp code:
 
-> `<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" multiple="true" allOption="true" onChange="{!c.handleOnChange}" />`
+`<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" multiple="true" allOption="true" onChange="{!c.handleOnChange}" />`
 
 Controller code to handle the change event:
  ```
