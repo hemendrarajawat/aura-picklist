@@ -1,6 +1,7 @@
 # Aura Picklist
 
 ![Build and Deploy to Scratch Org](https://github.com/hemendrarajawat/aura-picklist/workflows/Build%20and%20Deploy%20to%20Scratch%20Org/badge.svg?branch=master)
+![CodeQL](https://github.com/hemendrarajawat/aura-picklist/workflows/CodeQL/badge.svg?branch=master)
 
 Picklist is a Salesforce lightning aura component which let's you create single-select and multi-select picklist from a single component.
 
