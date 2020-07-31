@@ -1,11 +1,11 @@
 <aura:component>
     <!-- Attributes -->
-    <aura:attribute name="label" type="String" default="" description="Provide the label for the picklist." />
+    <aura:attribute name="label" type="String" required="true" description="Provide the label for the picklist." />
     <aura:attribute name="placeholder" type="String" default="Select an Option" />
     <aura:attribute
         name="options"
         type="Object[]"
-        default="[]"
+        required="true"
         description="Provide all the available options. Every option should have both label and value."
     />
     <aura:attribute name="c_options" type="Object[]" default="[]" description="Used for internal options handling." />
@@ -31,7 +31,7 @@
         name="allOption"
         type="Boolean"
         default="true"
-        description="If true, 'All' option will provided multi-select picklist."
+        description="If true, 'All' option will be provided in multi-select picklist."
     />
     <aura:attribute
         name="picklistFinalValue"
