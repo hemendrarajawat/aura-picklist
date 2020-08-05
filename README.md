@@ -41,15 +41,19 @@ Deploy to Scratch org: [![Deploy](https://deploy-to-sfdx.com/dist/assets/images/
 
 Single Select cmp code:
 
-`<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" onChange="{!c.handleOnChange}" />`
+```html
+<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" onChange="{!c.handleOnChange}" />
+```
 
 Multi Select cmp code:
 
-`<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" multiple="true" allOption="true" onChange="{!c.handleOnChange}" />`
+```html
+<c:Picklist options="{!v.options}" label="{!v.label}" variant="label-stacked" multiple="true" allOption="true" onChange="{!c.handleOnChange}" />
+```
 
 Controller code to handle the change event:
 
-```
+```javascript
 handleOnChange: function (component, event, helper) {
    console.log(event.getParam('selectedValues'));
 }
