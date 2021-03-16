@@ -66,6 +66,7 @@
                 >
                     <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
                         <input
+                            aura:id="inputField"
                             type="text"
                             class="slds-input slds-combobox__input"
                             aria-controls="picklist-options"
