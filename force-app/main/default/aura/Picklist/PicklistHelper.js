@@ -35,6 +35,13 @@
         }
     },
 
+    closePicklist: function (component, event) {
+        let picklist = component.find('picklist').getElement();
+        if (picklist.classList.contains('slds-is-open')) {
+            picklist.classList.remove('slds-is-open');
+        }
+    },
+
     fireOnChangeEvent: function (component, event) {
         var onChangeEvent = component.getEvent('onChange');
         onChangeEvent.setParams({
@@ -84,5 +91,21 @@
                     component.get('v.selectedValues').length
             );
         }
+    },
+
+    changeFocusBackToInput: function (component, event) {
+        let button = component.find('inputField');
+        if (button && button.getElement()) {
+            button.getElement().focus();
+        }
+    },
+
+    isInputFieldFocused: function (component, event) {
+        let button = component.find('inputField');
+        return (
+            button &&
+            button.getElement() &&
+            button.getElement() == document.activeElement
+        );
     }
 });
