@@ -8,20 +8,14 @@
     },
 
     togglePicklist: function (component, event, helper) {
-        helper.changeFocusBackToInput(component, event);
         helper.togglePicklist(component, event);
     },
 
     handleFocusOut: function (component, event, helper) {
-        setTimeout(() => {
-            if (!helper.isInputFieldFocused(component, event)) {
-                helper.closePicklist(component, event);
-            }
-        }, 200);
+        console.log(event);
     },
 
     handleOptionClick: function (component, event, helper) {
-        helper.changeFocusBackToInput(component, event);
         let clickedValue = event.currentTarget.getAttribute('data-value');
         let selectedValues = component.get('v.selectedValues');
         let multiple = component.get('v.multiple');
@@ -62,7 +56,6 @@
     },
 
     handleAllOptionClick: function (component, event, helper) {
-        helper.changeFocusBackToInput(component, event);
         let c_options = component.get('v.c_options');
         let selectedValues = [];
         c_options.forEach((c_option) => {
