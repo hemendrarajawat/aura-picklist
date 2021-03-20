@@ -113,6 +113,7 @@
                                     <div
                                         class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
                                         role="option"
+                                        title="{!option.label}"
                                     >
                                         <span class="slds-media__figure slds-listbox__option-icon">
                                             <aura:if isTrue="{!option.selected}">
@@ -120,7 +121,7 @@
                                             </aura:if>
                                         </span>
                                         <span class="slds-media__body">
-                                            <span class="slds-truncate" title="{!option.label}">{!option.label}</span>
+                                            <span class="slds-truncate">{!option.label}</span>
                                         </span>
                                     </div>
                                 </li>
