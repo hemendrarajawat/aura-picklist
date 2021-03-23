@@ -89,6 +89,17 @@
                         id="picklist-options"
                         class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
                         role="listbox"
+                        onclick="{!c.handleOptionsDivClick}"
+                        ondblclick="{!c.handleOptionsDivClick}"
+                        onmousedown="{!c.handleOptionsDivClick}"
+                        onmouseup="{!c.handleOptionsDivClick}"
+                        onscroll="{!c.handleOptionsDivClick}"
+                        ondrag="{!c.handleOptionsDivClick}"
+                        ondragstart="{!c.handleOptionsDivClick}"
+                        ondragleave="{!c.handleOptionsDivClick}"
+                        oncontextmenu="{!c.handleOptionsDivClick}"
+                        onfocus="{!c.handleOptionsDivClick}"
+                        onselect="{!c.handleOptionsDivClick}"
                     >
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                             <aura:if isTrue="{!and(v.multiple, v.allOption)}">

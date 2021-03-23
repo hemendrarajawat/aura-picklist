@@ -77,5 +77,9 @@
         helper.updateAllOptionsSelected(component, event);
         helper.updateFinalValue(component, event);
         helper.fireOnChangeEvent(component, event);
+    },
+
+    handleOptionsDivClick: function (component, event, helper) {
+        helper.changeFocusBackToInput(component, event);
     }
 });
